@@ -4,7 +4,7 @@ import { lockingContractAddresses } from '../../utils/constants';
 
 export const getLockedTokens = async () => {
   const provider = getInfuraProvider(1)
-  const contract = getContract('Token', provider)
+  const contract = getContract('AskoToken', provider)
   const addresses = Object.values(lockingContractAddresses)
   let accumulator = BigNumber.from(0)
 
