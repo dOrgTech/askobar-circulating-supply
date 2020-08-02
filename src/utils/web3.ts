@@ -1,6 +1,7 @@
-import { SupportedNames } from "./types"
 import { Contract, Signer } from "ethers"
 import { InfuraProvider, Provider } from '@ethersproject/providers'
+
+import { SupportedNames } from "./types"
 import { contractAddresses } from "./constants"
 
 const ABI_BASE_ROUTE = '../../artifacts'

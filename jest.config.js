@@ -4,6 +4,9 @@ module.exports = {
   },
   "testEnvironment": "node",
   "testRegex": "(test|spec)\\.(ts|js)$",
+  "testPathIgnorePatterns": [
+    "<rootDir>/dist/"
+  ],
   "moduleFileExtensions": [
     "ts",
     "tsx",
