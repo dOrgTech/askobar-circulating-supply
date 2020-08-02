@@ -1,12 +1,12 @@
-import { Router, Request, Response } from "express";
+import { Router } from "express";
 import { getLockedTokens } from "./service";
 
 const router = Router()
 
-router.get('/', async (req: Request, res: Response) => {
+router.get('/', async (_, res, next) => {
   const lockedTokens = await getLockedTokens()
-
-  res.json({ value: lockedTokens.toString() })
+  res.locals.value = lockedTokens.toString()
+  next()
 })
 
 export default router

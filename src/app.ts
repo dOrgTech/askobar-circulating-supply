@@ -1,17 +1,16 @@
-import express, { Application } from 'express';
+import express, { Application, Router } from 'express';
 import bodyParser from 'body-parser'
 import 'dotenv/config'
 
 import { normalizePort } from './config/normalizePort';
-import TotalSupplyController from './features/totalSupply/controller';
-import LockedTokensController from './features/lockedTokens/controller';
-import CirculatingSupplyController from './features/circulatingSupply/controller';
+import { formatResponse } from './middlewares/formatResponse';
+import { setResponseFormat } from './middlewares/setResponseFormat';
+import MainRouter from './router'
 
 const app: Application = express();
 app.use(bodyParser.json())
-app.use('/totalSupply', TotalSupplyController)
-app.use('/lockedTokens', LockedTokensController)
-app.use('/circulatingSupply', CirculatingSupplyController)
+app.use('/:format', setResponseFormat, MainRouter)
+app.use(formatResponse)
 
 const port = normalizePort(process.env.PORT || '3500')
 

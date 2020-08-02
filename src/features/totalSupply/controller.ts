@@ -1,12 +1,12 @@
-import { Router, Request, Response } from "express";
+import { Router } from "express";
 import { getTotalSupply } from "./service";
 
 const router = Router()
 
-router.get('/', async (req: Request, res: Response) => {
+router.get('/', async (req, res, next) => {
   const totalSupply = await getTotalSupply()
-
-  res.json({ value: totalSupply.toString() })
+  res.locals.value = totalSupply.toString()
+  next()
 })
 
 export default router
