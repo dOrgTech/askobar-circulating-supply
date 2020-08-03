@@ -5,9 +5,13 @@ import { formatResponse } from "../middlewares/format";
 const router = Router()
 
 const fetchData = async (req: Request, _: Response, next: NextFunction) => {
-  const lockedTokens = await getLockedTokens()
-  req.value = lockedTokens.toString()
-  next();
+  try {
+    const lockedTokens = await getLockedTokens()
+    req.value = lockedTokens.toString()
+    next();
+  } catch (err) {
+    next(err)
+  }
 }
 
 router.get('/lockedTokens', fetchData, formatResponse)

@@ -5,9 +5,13 @@ import { formatResponse } from "../middlewares/format";
 const router = Router()
 
 const fetchData = async (req: Request, _: Response, next: NextFunction) => {
-  const circulatingSupply = await getCirculatingSupply()
-  req.value = circulatingSupply.toString()
-  next();
+  try {
+    const circulatingSupply = await getCirculatingSupply()
+    req.value = circulatingSupply.toString()
+    next();
+  } catch (err) {
+    next(err)
+  }
 }
 
 router.get('/circulatingSupply', fetchData, formatResponse);

@@ -6,9 +6,13 @@ import { formatResponse } from "../middlewares/format";
 const router = Router()
 
 const fetchData = async (req: Request, _: Response, next: NextFunction) => {
-  const totalSupply = await getTotalSupply()
-  req.value = totalSupply.toString()
-  next();
+  try {
+    const totalSupply = await getTotalSupply()
+    req.value = totalSupply.toString()
+    next();
+  } catch(err) {
+    next(err)
+  }
 }
 
 router.get('/totalSupply', fetchData, formatResponse)

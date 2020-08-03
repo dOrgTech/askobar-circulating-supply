@@ -4,6 +4,7 @@ import 'dotenv/config'
 import  {
   controllers
 } from './controllers';
+import { errorHandler } from './middlewares/errorHandler';
 
 const app: Application = express();
 
@@ -23,5 +24,6 @@ const toUse = [
 
 toUse.forEach(object => app.use(object));
 app.use("/", controllers);
+app.use(errorHandler)
 
 export default app;

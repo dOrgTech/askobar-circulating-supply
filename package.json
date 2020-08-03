@@ -4,11 +4,11 @@
   "description": "REST API to retrieve Askobar's Token circulating supply",
   "main": "src/app.js",
   "scripts": {
-    "start": "node dist/server.js",
+    "start": "node dist/src/server.js",
     "dev": "nodemon src/server.ts",
     "generate-abis": "npx buidler compile",
     "postinstall": "npm run generate-abis",
-    "build": "tsc -p .",
+    "build": "tsc -p . && copyfiles ./artifacts/**/*.json dist",
     "prestart": "npm run build",
     "test": "jest"
   },
@@ -17,6 +17,7 @@
   "dependencies": {
     "@nomiclabs/buidler": "^1.4.3",
     "askonetwork-contracts-fork": "^0.0.1",
+    "copyfiles": "^2.3.0",
     "dotenv": "^8.2.0",
     "ethers": "^5.0.7",
     "express": "^4.17.1"
