@@ -5,7 +5,13 @@
     "strict": true,
     "esModuleInterop": true,
     "outDir": "dist",
-    "rootDir": "src",
-    "resolveJsonModule": true
-  }
+    "resolveJsonModule": true,
+    "typeRoots": [      
+      "custom_typings",
+      "./node_modules/@types",
+    ]
+  },
+  "exclude": [
+    "buidler.config.ts"
+  ]
 }

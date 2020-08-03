@@ -1,20 +1,29 @@
 import express, { Application } from 'express';
-import bodyParser from 'body-parser'
 import 'dotenv/config'
 
-import { normalizePort } from './config/normalizePort';
-import TotalSupplyController from './features/totalSupply/controller';
-import LockedTokensController from './features/lockedTokens/controller';
-import CirculatingSupplyController from './features/circulatingSupply/controller';
+import  {
+  controllers
+} from './controllers';
+import { errorHandler } from './middlewares/errorHandler';
 
 const app: Application = express();
-app.use(bodyParser.json())
-app.use('/totalSupply', TotalSupplyController)
-app.use('/lockedTokens', LockedTokensController)
-app.use('/circulatingSupply', CirculatingSupplyController)
 
-const port = normalizePort(process.env.PORT || '3500')
+const requestHeaders = (_: express.Request, response: express.Response, next: express.NextFunction) => {
+  response.header("Access-Control-Allow-Origin", "*");
+  response.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+};
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`)
-})
+const toUse = [
+  express.json(),
+  requestHeaders
+]
+
+toUse.forEach(object => app.use(object));
+app.use("/", controllers);
+app.use(errorHandler)
+
+export default app;

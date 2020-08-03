@@ -1,9 +1,10 @@
-import { SupportedNames } from "./types"
 import { Contract, Signer } from "ethers"
 import { InfuraProvider, Provider } from '@ethersproject/providers'
+
+import { SupportedNames } from "./types"
 import { contractAddresses } from "./constants"
 
-const ABI_BASE_ROUTE = '../../abis'
+const ABI_BASE_ROUTE = '../../artifacts'
 
 export const getABI = (name: SupportedNames) => {
   try {
@@ -14,9 +15,8 @@ export const getABI = (name: SupportedNames) => {
 }
 
 export const getContract = (name: SupportedNames, provider: Signer | Provider) => {
-  const abi = getABI(name)
+  const { abi } = getABI(name)
   const address = contractAddresses[name]
-
   return new Contract(address, abi, provider)
 }
 

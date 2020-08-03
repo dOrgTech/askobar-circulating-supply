@@ -1,10 +1,10 @@
-import { getContract, getInfuraProvider } from '../../utils/web3';
+import { getContract, getInfuraProvider } from '../utils/web3';
 import { BigNumber } from 'ethers';
-import { lockingContractAddresses } from '../../utils/constants';
+import { lockingContractAddresses } from '../utils/constants';
 
 export const getLockedTokens = async () => {
   const provider = getInfuraProvider(1)
-  const contract = getContract('Token', provider)
+  const contract = getContract('AskoToken', provider)
   const addresses = Object.values(lockingContractAddresses)
   let accumulator = BigNumber.from(0)
 

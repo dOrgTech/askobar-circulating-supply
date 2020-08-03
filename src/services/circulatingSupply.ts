@@ -1,5 +1,5 @@
-import { getTotalSupply } from "../totalSupply/service"
-import { getLockedTokens } from "../lockedTokens/service"
+import { getTotalSupply } from "./totalSupply"
+import { getLockedTokens } from "./lockedTokens"
 
 export const getCirculatingSupply = async () => {
   const totalSupply = await getTotalSupply()
