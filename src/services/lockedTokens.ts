@@ -1,6 +1,6 @@
-import { getContract, getInfuraProvider } from '../../utils/web3';
+import { getContract, getInfuraProvider } from '../utils/web3';
 import { BigNumber } from 'ethers';
-import { lockingContractAddresses } from '../../utils/constants';
+import { lockingContractAddresses } from '../utils/constants';
 
 export const getLockedTokens = async () => {
   const provider = getInfuraProvider(1)

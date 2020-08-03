@@ -1,8 +1,8 @@
 import { BigNumber } from "ethers";
 
-import { getLockedTokens } from "../../src/features/lockedTokens/service";
-import { getCirculatingSupply } from "../../src/features/circulatingSupply/service";
-import { getTotalSupply } from "../../src/features/totalSupply/service";
+import { getLockedTokens } from "../../src/services/lockedTokens";
+import { getCirculatingSupply } from "../../src/services/circulatingSupply";
+import { getTotalSupply } from "../../src/services/totalSupply";
 
 describe("Services ", () => {
   it("Get locked tokens ", async () => {

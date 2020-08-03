@@ -6,7 +6,10 @@
     "esModuleInterop": true,
     "outDir": "dist",
     "resolveJsonModule": true,
-    "types": ["node", "jest"]
+    "typeRoots": [      
+      "./node_modules/@types",
+      "custom_typings"
+    ]
   },
   "exclude": [
     "buidler.config.ts"

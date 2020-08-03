@@ -1,4 +1,4 @@
-import { getContract, getInfuraProvider } from '../../utils/web3';
+import { getContract, getInfuraProvider } from '../utils/web3';
 import { BigNumber } from 'ethers';
 
 export const getTotalSupply = async () => {

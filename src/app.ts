@@ -1,15 +1,27 @@
 import express, { Application } from 'express';
-
 import 'dotenv/config'
 
-import TotalSupplyController from './features/totalSupply/controller';
-import LockedTokensController from './features/lockedTokens/controller';
-import CirculatingSupplyController from './features/circulatingSupply/controller';
+import  {
+  controllers
+} from './controllers';
 
 const app: Application = express();
-app.use(express.json())
-app.use('/totalSupply', TotalSupplyController)
-app.use('/lockedTokens', LockedTokensController)
-app.use('/circulatingSupply', CirculatingSupplyController)
+
+const requestHeaders = (_: express.Request, response: express.Response, next: express.NextFunction) => {
+  response.header("Access-Control-Allow-Origin", "*");
+  response.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+};
+
+const toUse = [
+  express.json(),
+  requestHeaders
+]
+
+toUse.forEach(object => app.use(object));
+app.use("/", controllers);
 
 export default app;
