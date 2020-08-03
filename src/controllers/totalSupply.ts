@@ -1,12 +1,16 @@
-import { Router, Request, Response } from "express";
+import { Router, Request, Response, NextFunction } from "express";
 import { getTotalSupply } from "../services/totalSupply";
+import { formatResponse } from "../middlewares/format";
+
 
 const router = Router()
 
-router.get('/totalSupply', async (req: Request, res: Response) => {
+const fetchData = async (req: Request, _: Response, next: NextFunction) => {
   const totalSupply = await getTotalSupply()
+  req.value = totalSupply.toString()
+  next();
+}
 
-  res.json({ value: totalSupply.toString() })
-})
+router.get('/totalSupply', fetchData, formatResponse)
 
 export default router

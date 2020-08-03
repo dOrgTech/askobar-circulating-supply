@@ -3,6 +3,6 @@
 // https://stackoverflow.com/questions/58957228/property-does-not-exist-on-type-requestparamsdictionary
 declare namespace Express {
   interface Request {
-      customProperties: string[];
+      value: string;
   }
 }

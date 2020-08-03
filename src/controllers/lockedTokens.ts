@@ -1,12 +1,15 @@
-import { Router, Request, Response } from "express";
+import { Router, Request, Response, NextFunction } from "express";
 import { getLockedTokens } from "../services/lockedTokens";
+import { formatResponse } from "../middlewares/format";
 
 const router = Router()
 
-router.get('/lockedTokens', async (req: Request, res: Response) => {
+const fetchData = async (req: Request, _: Response, next: NextFunction) => {
   const lockedTokens = await getLockedTokens()
+  req.value = lockedTokens.toString()
+  next();
+}
 
-  res.json({ value: lockedTokens.toString() })
-})
+router.get('/lockedTokens', fetchData, formatResponse)
 
 export default router
