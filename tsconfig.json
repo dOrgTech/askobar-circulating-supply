@@ -12,6 +12,7 @@
     ]
   },
   "exclude": [
-    "buidler.config.ts"
+    "buidler.config.ts",
+    "test"
   ]
 }
