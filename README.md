@@ -113,12 +113,22 @@ Content-Type: application/json
 
 All endpoint responses from this API can be request in different formats.
 
-To override the default `application/json` response format, simply pass `format` URL parameter with one of the currently supported alternative formats:
+### Decimals
+
+To override the default `0` decimals response format, pass `decimals` URL parameter with `true`, and it will format the response to an `18` decimals number string:
+
+```json
+GET /circulatingSupply?decimals=true HTTP/1.1
+```
+
+### Content Format
+
+To override the default `application/json` response format, pass `format` URL parameter with one of the currently supported alternative formats:
 
 ```json
 GET /circulatingSupply?format=text HTTP/1.1
 ```
 
-### Valid format values:
+#### Valid format values:
 
 * `text`: text/plain

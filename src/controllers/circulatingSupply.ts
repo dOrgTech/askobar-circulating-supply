@@ -1,6 +1,7 @@
 import { Router, Request, Response, NextFunction } from "express";
 import { getCirculatingSupply } from "../services/circulatingSupply";
 import { formatResponse } from "../middlewares/format";
+import { formatDecimals } from "../middlewares/decimals";
 
 const router = Router()
 
@@ -14,7 +15,7 @@ const fetchData = async (req: Request, _: Response, next: NextFunction) => {
   }
 }
 
-router.get('/circulatingSupply', fetchData, formatResponse);
+router.get('/circulatingSupply', fetchData, formatDecimals, formatResponse);
 
 
 export default router

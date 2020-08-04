@@ -9,3 +9,5 @@ export const contractAddresses = {
   AskoToken: '0xeEEE2a622330E6d2036691e983DEe87330588603',
   ...lockingContractAddresses
 }
+
+export const tokenDecimals = 18
